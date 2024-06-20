@@ -10,9 +10,9 @@ This project consists of a frontend and a backend that together form the ARound 
 ## Installation
 
 ### Step 1: Install Dependencies
-
+```sh
 First, install the necessary dependencies for both the frontend and backend:
-
+```
 
 # Navigate to the project directory
 
