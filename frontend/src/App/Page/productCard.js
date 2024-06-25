@@ -9,6 +9,7 @@ import React from 'react';
 const ProductCard = ({ product, handleDeleteFunc }) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
+            {/* Specify the image attributes, the width and the height: 61.8% of width */}
             <CardMedia
                 component="div"
                 sx={{
@@ -20,6 +21,7 @@ const ProductCard = ({ product, handleDeleteFunc }) => {
                     backgroundPosition: 'center',
                 }}
             >
+                {/* This part specify the attributes of the red trash icon */}
                 <IconButton
                     aria-label="delete"
                     sx={{
@@ -36,13 +38,17 @@ const ProductCard = ({ product, handleDeleteFunc }) => {
                     <DeleteIcon sx={{ color: 'red' }} />
                 </IconButton>
             </CardMedia>
+            {/* List the Content of the product */}
             <CardContent>
+                {/* List the product name */}
                 <Typography gutterBottom variant="h5" component="div">
                     <b>{product.name}</b>
                 </Typography>
+                {/* List the product price */}
                 <Typography variant="body2" color="text.secondary">
                     <b>${product.price}</b>
                 </Typography>
+                {/* List the product description */}
                 <Typography variant="body2" color="text.secondary">
                     {product.description}
                 </Typography>

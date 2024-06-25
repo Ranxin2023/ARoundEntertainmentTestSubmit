@@ -4,7 +4,9 @@ const express = require('express');
 require('dotenv').config();
 
 const app = express();
-const HOST = '0.0.0.0';
+
+// define host and port
+const HOST = process.env.HOST;
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -13,11 +15,13 @@ app.use(express.json());
 //     key: fs.readFileSync('C:\\Users\\ranxi\\UCDavis\\W_workingApplication\\ARoundEntertainment\\SWE_Exercise\\StarterCode\\backend\\key.pem'),
 //     cert: fs.readFileSync('C:\\Users\\ranxi\\UCDavis\\W_workingApplication\\ARoundEntertainment\\SWE_Exercise\\StarterCode\\backend\\cert.pem')
 // };
+
 //implement the CORS config
 const cors = require('cors');
+// client web address certificated by cors
 const corsOptions = {
-    origin: ['https://ranxin2023.github.io', 'http://localhost:3000', 'http://10.18.97.253:3000', 'http://172.20.20.20:3000'],
-    credentials: true,            //access-control-allow-credentials:true
+    origin: ['https://ranxin2023.github.io', 'http://localhost:3000'],
+    credentials: true,
     optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
@@ -38,10 +42,9 @@ const fetchImageUrl = () => {
 
 //implement the get api for getting products
 app.get('/api/products', (req, res) => {
+    // generate the random imageURL
     for (let i = 0; i < products.length; i++) {
-
         products[i].imageUrl = fetchImageUrl()
-
     }
     // console.log('All products:', products);
     res.json(products)
@@ -50,9 +53,10 @@ app.get('/api/products', (req, res) => {
 //implement the delete api for deleting a product by Id
 app.delete('/api/products/:id', (req, res) => {
     const { id } = req.params;
+    const idInt = parseInt(id)
     // console.log("Enter app.delete")
     // console.log(`Received request to delete product with id: ${id}`);
-    const idInt = parseInt(id)
+    // find the index equals to id
     var productIdx = -1
     var idx = 0
     for (const product of products) {
@@ -64,15 +68,19 @@ app.delete('/api/products/:id', (req, res) => {
     }
 
     // console.log(`ProductIdx is ${productIdx}`)
+    // finding the items
     if (productIdx !== -1) {
         // console.log(`Product found:`, products[productIdx]);
+        // delete the index
         products.splice(productIdx, 1);
         res.status(200).json({ message: 'Product deleted successfully' });
     } else {
+        // error response for not finding the item
         res.status(404).json({ message: 'Product not found' });
     }
 });
 
+// listen to the port
 app.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}/`);
 });

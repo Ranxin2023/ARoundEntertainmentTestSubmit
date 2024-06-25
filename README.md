@@ -1,5 +1,7 @@
-# ARound Entertainment Test
 
+# ARound Entertainment Test
+**Author:** Ranxin Li  
+**Date:** June 20, 2024
 This project consists of a frontend and a backend that together form the ARound Entertainment Test application. Follow the steps below to set up and run the application.
 
 ## Prerequisites
@@ -10,14 +12,17 @@ This project consists of a frontend and a backend that together form the ARound 
 ## Installation
 
 ### Step 1: Install Dependencies
-
 First, install the necessary dependencies for both the frontend and backend:
-
 
 # Navigate to the project directory
 
+```sh
 cd path/to/your/project
-
+```
+# zip the file to you directory and open starter code folder
+```sh
+cd ./StarterCode
+```
 # Install frontend dependencies
 ```sh
 cd frontend
